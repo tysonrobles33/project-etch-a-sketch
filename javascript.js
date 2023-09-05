@@ -13,10 +13,18 @@ function createGrid () {
 
         for (let i = 0; i < 16; i++) {                 /* adds colums or items within each row */
             let item = document.createElement('div');
-            item.style.flex = "1 1 auto"
-            row.appendChild(item)
+            item.style.flex = "1 1 auto";
+            row.appendChild(item);
+            item.addEventListener('onmouseover', hover());
         }
     }
 }
 
+function hover() {
+    console.log('moused')
+}
+
+
+
+hover()
 createGrid()
