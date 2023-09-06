@@ -3,3 +3,24 @@
     margin: 0;
     outline: 1px solid black;
 }
+
+#banner {
+    display: flex;
+    height: 60px;
+}
+
+#customizeGrid {
+    height: 25px;
+    width: 100px;
+    border-radius: 6px;
+    margin-left: 25px;
+    margin-top: 15px;
+}
+
+#clearGrid {
+    height: 25px;
+    width: 100px;
+    border-radius: 6px;
+    margin-left: 25px;
+    margin-top: 15px
+}
