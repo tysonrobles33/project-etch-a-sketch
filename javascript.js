@@ -2,24 +2,33 @@ let screenHeight = screen.height;
 let screenwidth = screen.width;
 
 const container = document.getElementById('container');
-let gridItem = document.querySelectorAll('.gridItem')
-let item = document.createElement('div');
-function createGrid () {
-    for (let r = 0; r < 16; r++) {
-        let row = document.createElement('div');
-        row.setAttribute('style', 'display: flex;');
-        row.style.flexDirection = 'row'
-        row.style.height = (screenHeight / 16) + "px"; /* fits all 16 rows evenly across screen height */
-        container.appendChild(row);
+const customizeButton = document.getElementById('customizeGrid');
 
-    for (let i = 0; i < 16; i++) {                 /* adds colums or items within each row */
-        let item = document.createElement('div');
-        item.style.flex = "1 1 auto";
-        item.classList.add('gridItem');
-        row.appendChild(item);
+let heightInput = ''
+let widthInput = ''
+
+function createGrid () {
+    let height = heightInput;
+    let width = widthInput;
+
+    if (height < 100 && width < 100) {
+        for (let r = 0; r < height; r++) {
+            let row = document.createElement('div');
+            row.setAttribute('style', 'display: flex;');
+            row.style.flexDirection = 'row'
+            row.style.height = (screenHeight / width) + "px"; /* fits all 16 rows evenly across screen height */
+            container.appendChild(row);
+
+            for (let i = 0; i < width; i++) {                 /* adds colums or items within each row */
+                let item = document.createElement('div');
+                item.style.flex = "1 1 auto";
+                item.classList.add('gridItem');
+                row.appendChild(item);
+            }
         }
-    }
+    } else alert('Sorry Dont Know What Happened');
 }
+
 
 function changeColor() {
     let gridItems = document.querySelectorAll('.gridItem')
@@ -41,5 +50,16 @@ function changeColor() {
     })
 }  
 
-createGrid()
+function gridInput() {
+    customizeButton.addEventListener('click', () => {
+        heightInput = prompt('Input Grid Height. Note: Max of 100');
+        widthInput = prompt('Input Grid Width. Note: Max of 100');
+        createGrid()
+        return[heightInput, widthInput]   
+    })
+}
+
+gridInput()
 changeColor()
+
+
