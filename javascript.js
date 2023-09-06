@@ -3,15 +3,16 @@ let screenwidth = screen.width;
 
 const container = document.getElementById('container');
 const customizeButton = document.getElementById('customizeGrid');
+const clearGrid = document.getElementById('clearGrid');
 
-let heightInput = ''
-let widthInput = ''
+let heightInput = '';
+let widthInput = '';
 
 function createGrid () {
     let height = heightInput;
     let width = widthInput;
 
-    if (height < 100 && width < 100) {
+    if (height <= 100 && width <= 100) {
         for (let r = 0; r < height; r++) {
             let row = document.createElement('div');
             row.setAttribute('style', 'display: flex;');
@@ -55,11 +56,14 @@ function gridInput() {
         heightInput = prompt('Input Grid Height. Note: Max of 100');
         widthInput = prompt('Input Grid Width. Note: Max of 100');
         createGrid()
+        changeColor()
         return[heightInput, widthInput]   
+    });
+    clearGrid.addEventListener('click', () => {
+        location.reload()
     })
 }
 
 gridInput()
-changeColor()
 
 
