@@ -3,15 +3,19 @@ let screenwidth = screen.width;
 
 const container = document.getElementById('container');
 const customizeButton = document.getElementById('customizeGrid');
+const clearGrid = document.getElementById('clearGrid');
+const colorButtons = document.querySelectorAll('button');
 
-let heightInput = ''
-let widthInput = ''
+let heightInput = '';
+let widthInput = '';
+
+let selectedColor = 'black' 
 
 function createGrid () {
     let height = heightInput;
     let width = widthInput;
 
-    if (height < 100 && width < 100) {
+    if (height <= 100 && width <= 100) {
         for (let r = 0; r < height; r++) {
             let row = document.createElement('div');
             row.setAttribute('style', 'display: flex;');
@@ -36,7 +40,7 @@ function changeColor() {
 
     gridItems.forEach(gridItem => {
         gridItem.addEventListener('mousedown', () => {
-            gridItem.style.backgroundColor = 'black';
+            gridItem.style.backgroundColor = selectedColor;
             changeColor = true;
         });
         gridItem.addEventListener('mouseup', () => {
@@ -44,7 +48,7 @@ function changeColor() {
         });
         gridItem.addEventListener('mouseover', () => {
             if (changeColor == true) {
-                gridItem.style.backgroundColor = 'black';
+                gridItem.style.backgroundColor = selectedColor;
             }
         })
     })
@@ -55,11 +59,36 @@ function gridInput() {
         heightInput = prompt('Input Grid Height. Note: Max of 100');
         widthInput = prompt('Input Grid Width. Note: Max of 100');
         createGrid()
+        changeColor()
         return[heightInput, widthInput]   
+    });
+    clearGrid.addEventListener('click', () => {
+        location.reload()
     })
 }
 
+function colorSelector () {
+    colorButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (button.classList.contains('red')) {selectedColor = 'red'}
+            if (button.classList.contains('blue')) {selectedColor = 'blue'}
+            if (button.classList.contains('green')) {selectedColor = 'green'}
+            if (button.classList.contains('yellow')) {selectedColor = 'yellow'}
+            if (button.classList.contains('purple')) {selectedColor = 'purple'}
+            if (button.classList.contains('colorRandom')) {selectedColor = getRandomRGB()}
+        })
+    })
+}
+
+function getRandomRGB () {
+    let red = Math.floor(Math.random() * 255) + 1;
+    let green = Math.floor(Math.random() * 255) + 1;
+    let blue = Math.floor(Math.random() * 255) + 1;
+    let rgb = `rgb(${red}, ${blue}, ${green})`
+    return rgb
+}
+
+colorSelector()
 gridInput()
-changeColor()
 
 

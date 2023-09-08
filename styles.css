@@ -1,15 +1,16 @@
 * {
     padding: 0;
     margin: 0;
-    outline: 1px solid black;
 }
 
 #banner {
     display: flex;
+    justify-content: space-between;
     height: 60px;
+    outline: 1px solid black;
 }
 
-#customizeGrid {
+#customizeDimensions {
     height: 25px;
     width: 100px;
     border-radius: 6px;
@@ -24,3 +25,37 @@
     margin-left: 25px;
     margin-top: 15px
 }
+#customizeColor {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 15px;
+    margin-right: 35px;
+}
+
+#header{
+    margin-top: 15px;
+}
+
+
+.button {
+    height: 25px;
+    width: 25px;
+}
+
+.button.red {
+    background-color: red;
+}
+.button.blue {
+    background-color: blue;
+}
+.button.green {
+    background-color: green;
+}
+.button.yellow {
+    background-color: yellow;
+}
+.button.purple {
+    background-color: purple;
+}
+
